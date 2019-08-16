@@ -3,11 +3,13 @@ package com.example.demo.com.example.demo;
 import com.example.demo.com.example.demo.topics.Topic;
 import com.example.demo.com.example.demo.topics.TopicRepository;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+@Component
 public class Runner implements CommandLineRunner {
 
     private TopicRepository repository;
