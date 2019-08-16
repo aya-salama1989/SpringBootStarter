@@ -1,23 +1,23 @@
 package com.example.demo.com.example.demo.topics;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController //it means you can map url requests to particular methods in this class
 public class TopicsController {
 
-    @Autowired
     private TopicService topicService;
 
+    public TopicsController(TopicService topicService) {
+        this.topicService = topicService;
+    }
+
     @RequestMapping("/topics") // takes the url that need to map to this function, works for GET requests only
-    public List<Topic> getAllTopics() {
+    public Iterable<Topic> getAllTopics() {
         return topicService.getAllTopics();
     }
 
     @RequestMapping("/topics/{id}")
-    public Topic getTopic(@PathVariable String id) {
+    public Topic getTopic(@PathVariable Long id) {
         return topicService.getTopic(id);
     }
 
@@ -32,7 +32,7 @@ public class TopicsController {
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/topics/{id}")
-    public void deleteTopic(@PathVariable String id) {
+    public void deleteTopic(@PathVariable Long id) {
         topicService.deleteTopic(id);
     }
 }
